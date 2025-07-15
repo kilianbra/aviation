@@ -3,7 +3,7 @@
 
 | Parameter | Value |
 |-----------|-------|
-| Days per year | 365 |
+| Days per year | 366 |
 
 # Model Inputs
 
