@@ -36,8 +36,9 @@ source venv/bin/activate
 ```
 
 ### 3. Install Dependencies
+Install all required Python packages using the provided `requirements.txt` file:
 ```sh
-pip install mkdocs
+pip install -r requirements.txt
 ```
 
 ### 4. Serve the Documentation Locally
@@ -66,13 +67,15 @@ aviation/
     index.md
   mkdocs.yml
   README.md
+  requirements.txt
 ```
 - `docs/` contains the Markdown documentation files.
 - `mkdocs.yml` is the MkDocs configuration file.
+- `requirements.txt` lists Python dependencies.
 - `README.md` is this file.
 
 ## License
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
-For any questions or suggestions, please open an issue or contact the maintainer.
+For any questions or suggestions, please open an issue or contact the developer kpb30@cam.ac.uk
