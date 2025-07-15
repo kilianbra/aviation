@@ -12,10 +12,10 @@ This project provides:
 ## Developer Guide
 
 ### Prerequisites
-- [uv](https://github.com/astral-sh/uv) (a fast Python package manager and environment tool)
+- [uv](https://docs.astral.sh/uv/) (a fast Python package manager and environment tool)
 
 #### Install uv
-To install `uv`, use the following command for your platform:
+To install `uv`, follow the [official installation guide](https://docs.astral.sh/uv/getting-started/installation/) or use the following command for your platform:
 
 - **Linux / macOS:**
   ```sh
