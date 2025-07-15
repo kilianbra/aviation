@@ -12,8 +12,10 @@ This project provides:
 ## Developer Guide
 
 ### Prerequisites
-- [Python 3.12+](https://www.python.org/downloads/)
-- [pip](https://pip.pypa.io/en/stable/)
+- [uv](https://github.com/astral-sh/uv) (a fast Python package manager and environment tool)
+
+#### Install uv
+To install `uv`, visit the [official Astral uv website](https://astral.sh/docs/uv/install/) and follow the platform-specific instructions provided there.
 
 ### 1. Clone the Repository
 ```sh
@@ -21,36 +23,23 @@ git clone https://github.com/your-username/aviation.git
 cd aviation
 ```
 
-### 2. Set Up a Virtual Environment
-It is recommended to use a Python virtual environment to manage dependencies:
-
-#### On Windows:
+### 2. Sync Dependencies and Set Up Environment
+Use `uv` to automatically create a virtual environment and install all dependencies from `pyproject.toml` and `uv.lock`:
 ```sh
-python -m venv venv
-venv\Scripts\activate
+uv sync
 ```
-#### On macOS/Linux:
-```sh
-python3 -m venv venv
-source venv/bin/activate
-```
+- `uv sync` will create a virtual environment (if not already active) and install all dependencies as specified in the lockfile.
 
-### 3. Install Dependencies
-Install all required Python packages using the provided `requirements.txt` file:
+### 3. Serve the Documentation Locally
 ```sh
-pip install -r requirements.txt
-```
-
-### 4. Serve the Documentation Locally
-```sh
-mkdocs serve
+uv run mkdocs serve
 ```
 This will start a local server (usually at [http://127.0.0.1:8000](http://127.0.0.1:8000)) where you can view and edit the documentation live.
 
-### 5. Build the Documentation (Optional)
+### 4. Build the Documentation (Optional)
 To generate a static site:
 ```sh
-mkdocs build
+uv run mkdocs build
 ```
 The output will be in the `site/` directory.
 
@@ -67,11 +56,12 @@ aviation/
     index.md
   mkdocs.yml
   README.md
-  requirements.txt
+  pyproject.toml
+  uv.lock
 ```
 - `docs/` contains the Markdown documentation files.
 - `mkdocs.yml` is the MkDocs configuration file.
-- `requirements.txt` lists Python dependencies.
+- `pyproject.toml` and `uv.lock` define and lock Python dependencies.
 - `README.md` is this file.
 
 ## License
