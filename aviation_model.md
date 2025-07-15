@@ -15,13 +15,12 @@ This document outlines a basic model for global aviation operations based on fun
 | Parameter | Value | Unit | Source |
 |-----------| ----- | ---- | ------ |
 | Passengers per year | $5 \times 10^9$ | passengers/year | [ATAG Facts & Figures](https://atag.org/facts-figures) |
-| Revenue Passenger Kilometers per year | $9 \times 10^12$ | passenger-km/year | [IATA Market Analysis](https://www.iata.org/en/iata-repository/publications/economic-reports/air-passenger-market-analysis-december-2024/) |
+| Revenue Passenger Kilometers per year | $9 \times 10^{12}$ | passenger-km/year | [IATA Market Analysis](https://www.iata.org/en/iata-repository/publications/economic-reports/air-passenger-market-analysis-december-2024/) |
 
 ### Model Parameters
 
 | Parameter | Value | Unit |
 |-----------| ----- | ---- |
-| Average flight length | 4000 | km |
 | Aircraft flights per day | 3 | flights/day |
 | Average seats per aircraft | 250 | seats |
 
