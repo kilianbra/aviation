@@ -10,26 +10,30 @@ This document outlines a basic model for global aviation operations based on fun
 
 ## Model Inputs
 
-| Parameter | Description |
-|-----------|-------------|
-| Passengers per year | Total number of passengers transported globally per year |
-| Average flight length (km) | Mean distance of flights in kilometers |
-| Aircraft flights per day | Number of flights each aircraft makes per day |
-| Average seats per aircraft | Mean seating capacity of aircraft |
+### Input Data
+
+| Parameter | Value | Unit | Source |
+|-----------| ----- | ---- | ------ |
+| Passengers per year | $5 \times 10^9$ | passengers/year | [ATAG Facts & Figures](https://atag.org/facts-figures) |
+| Revenue Passenger Kilometers per year | $9 \times 10^12$ | passenger-km/year | [IATA Market Analysis](https://www.iata.org/en/iata-repository/publications/economic-reports/air-passenger-market-analysis-december-2024/) |
+
+### Model Parameters
+
+| Parameter | Value | Unit |
+|-----------| ----- | ---- |
+| Average flight length | 4000 | km |
+| Aircraft flights per day | 3 | flights/day |
+| Average seats per aircraft | 250 | seats |
 
 ## Model Equations
 
 The model uses two fundamental equations to calculate key aviation metrics:
 
 ### Passengers per Day
-\[
-\text{passengers per day} = \frac{\text{passengers per year}}{\text{days per year}}
-\]
+$\text{passengers\ per\ day} = \frac{\text{passengers\ per\ year}}{\text{days\ per\ year}}$
 
 ### Required Global Fleet Size
-\[
-\text{Required Global Fleet} = \frac{\text{passengers per day}}{\text{seats per aircraft} \times \text{flights per aircraft per day}}
-\]
+$\text{Required\ Global\ Fleet} = \frac{\text{passengers\ per\ day}}{\text{seats\ per\ aircraft} \times \text{flights\ per\ aircraft\ per\ day}}$
 
 ## Model Description
 
