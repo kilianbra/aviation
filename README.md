@@ -15,7 +15,16 @@ This project provides:
 - [uv](https://github.com/astral-sh/uv) (a fast Python package manager and environment tool)
 
 #### Install uv
-To install `uv`, visit the [official Astral uv website](https://astral.sh/docs/uv/install/) and follow the platform-specific instructions provided there.
+To install `uv`, use the following command for your platform:
+
+- **Linux / macOS:**
+  ```sh
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+  ```
+- **Windows (PowerShell):**
+  ```powershell
+  powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+  ```
 
 ### 1. Clone the Repository
 ```sh
