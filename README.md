@@ -12,7 +12,7 @@ This project provides:
 ## Developer Guide
 
 ### Prerequisites
-- [Python 3.7+](https://www.python.org/downloads/)
+- [Python 3.12+](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/)
 
 ### 1. Clone the Repository
@@ -60,7 +60,7 @@ The output will be in the `site/` directory.
 - Please ensure your changes are well-documented.
 
 ## Project Structure
-```
+```text
 aviation/
   docs/
     aviation.md
