@@ -1,0 +1,5 @@
+site_name: Aviation Model
+
+nav:
+  - Home: 'index.md'
+  - Aviation model: 'aviation.md'

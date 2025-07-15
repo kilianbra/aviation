@@ -1,3 +1,3 @@
-#Basic Global Aviation Model
+# Simple Global Aviation Model
 
-A basic model of global aviation 
+This document outlines a basic model for global aviation operations based on fundamental parameters and simple calculations.
