@@ -3,3 +3,13 @@ site_name: Aviation Model
 nav:
   - Home: 'index.md'
   - Aviation model: 'aviation.md'
+
+markdown_extensions:
+  - pymdownx.caret
+  - pymdownx.tilde
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

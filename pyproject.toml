@@ -9,4 +9,5 @@ dependencies = []
 [dependency-groups]
 docs = [
     "mkdocs>=1.6.1",
+    "pymdown-extensions>=10.16",
 ]
