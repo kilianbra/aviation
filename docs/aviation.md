@@ -26,10 +26,18 @@
 The model uses two fundamental equations to calculate key aviation metrics:
 
 ## Passengers per Day
-$\text{passengers\ per\ day} = \frac{\text{passengers\ per\ year}}{\text{days\ per\ year}}$
+$$
+\begin{equation}
+\text{passengers per day} = \frac{\text{passengers per year}}{\text{days per year}} \label{equation:passengers-per-day}
+\end{equation}
+$$
 
 ## Required Global Fleet Size
-$\text{Required\ Global\ Fleet} = \frac{\text{passengers\ per\ day}}{\text{seats\ per\ aircraft} \times \text{flights\ per\ aircraft\ per\ day}}$
+$$
+\begin{equation}
+\text{Required Global Fleet} = \frac{\text{passengers per day}}{\text{seats per aircraft} \times \text{flights per aircraft per day}} \label{equation:required-fleet}
+\end{equation}
+$$
 
 # Model Description
 
