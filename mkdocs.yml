@@ -7,7 +7,7 @@ nav:
 plugins:
   - search
   - bibtex:
-      bib_file: "https://api.zotero.org/users/6401108/collections/DXT8EFTF/items?format=bibtex"
+      bib_file: "https://api.zotero.org/groups/5782724/collections/G847TDER/items?format=bibtex"
 
 markdown_extensions:
   - footnotes
