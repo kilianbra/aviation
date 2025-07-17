@@ -4,7 +4,13 @@ nav:
   - Home: "index.md"
   - Aviation model: "aviation.md"
 
+plugins:
+  - search
+  - bibtex:
+      bib_file: "https://api.zotero.org/users/6401108/collections/DXT8EFTF/items?format=bibtex"
+
 markdown_extensions:
+  - footnotes
   - pymdownx.caret
   - pymdownx.tilde
   - pymdownx.arithmatex:
