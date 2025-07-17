@@ -15,10 +15,10 @@
 
 ## Model Parameters
 
-| Parameter                  | Value | Unit                     |
-| -------------------------- | ----- | ------------------------ |
-| Aircraft flights per day   | 3     | flights/day              |
-| Average seats per aircraft | 250   | seats[@atagFactsFigures] |
+| Parameter                  | Value | Unit           |
+| -------------------------- | ----- | -------------- |
+| Aircraft flights per day   | 3     | flights/day    |
+| Average seats per aircraft | 250   | seats[@Raymer] |
 
 # Model Equations
 
