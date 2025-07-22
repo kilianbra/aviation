@@ -22,14 +22,14 @@
 For a new PR, push a local branch that doesn't have a PR to upstream tracking.
 
 **Additional Git Tips:**
-- Use `git add -p` to select changes interactively
+- Use `git add -p <filename>` to select changes interactively
 
 ## MkDocs
 
 ### Basic Commands
 
-- View all options: `mkdocs --help` or `mkdocs serve --help`
-- Stop server: `Ctrl+C` (Windows and Linux)
+- View all options: `uv run mkdocs --help` or `uv run mkdocs serve --help`
+- Stop server: `Ctrl+C` (Windows and Linux) (`Ctrl+Z` hides it and then use `fg` to bring it back to foreground)
 - Configuration file: `mkdocs.yml` specifies MkDocs settings
 
 ## Package Management
@@ -38,9 +38,9 @@ For a new PR, push a local branch that doesn't have a PR to upstream tracking.
 
 - `requirements.txt` was traditionally used to specify dependencies
 - Installed via `pip install -r requirements.txt`
-- Now replaced by modern tools like `uv`
+- Now replaced by modern tools like `uv lock` and `uv sync`
 
-### Semantic Versioning (e.g., 1.6.1)
+### Semantic Versioning (e.g., 1.6.1) of modules and software
 
 - **Patch number** (last digit): Bug fixes and security updates that shouldn't break code
 - **Minor version** (middle digit): New features and functionality
@@ -222,3 +222,68 @@ with pytest.raises(TypeError, match="Argument `passengers_per_year` passed to `p
 def greeting(name: str) -> str:
     return 'Hello' + name
 ```
+
+
+Highlight something and `Ctrl+D` to replace all of the instances
+
+Command `uv run mypy .` checks all the files
+
+Orders the check.yml file by runtime speed, fastest first and slowest at the end to get fast feedback
+
+
+Change all the ruff rules from the old one
+
+select = [
+    "B",    # flake8-bugbear
+    "D",    # docstrings
+    "E",    # pycodestyle
+    "F",    # Pyflakes
+    "I",    # isort
+    "N",    # pycodestyle
+    "SIM",  # flake8-simplify
+    "T",    # pycodestyle
+    "UP",   # pyupgrade
+    "W291", # no trailing whitespace
+]
+ignore = ["E501"]
+
+to now all and a lot of ignores
+
+S101 causes issues when any assert is used, because it can be bypassed (not robust).
+We want to ignore this rule for our tests directory
+
+INP001 is that some functions are imported without an __init__ (analysis directory looks like a package)
+We want to ignore this rule for our analysis directory
+
+ # Ignore `T201` (print statements) in all `analysis/*.py` files.
+ # Ignore `D1` (docstrings) in all `tests/*.py` files.
+
+ PT007 is using tuples or lists
+
+
+### Imports of modules
+
+This represents the package name and the module.
+
+Now we have added the functions in the fleet module to the package namespace. This means we can now import the functions directly from the package namespace with the import in `__init__.py`. Here are the different ways to import and use functions:
+
+1. ```python
+   import aviation
+   aviation.fleet.passengers_per_day()
+   aviation.passengers_per_day()
+   ```
+
+2. ```python
+   from aviation import fleet
+   fleet.passengers_per_day()
+   ```
+
+3. ```python
+   from aviation import passengers_per_day
+   passengers_per_day()
+   ```
+
+4. ```python
+   from aviation.fleet import passengers_per_day
+   passengers_per_day()
+   ```

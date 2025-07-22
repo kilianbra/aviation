@@ -8,11 +8,11 @@ from aviation.fleet import (
 
 
 @pytest.mark.parametrize(
-    "passengers_per_year, days_per_year, expected_passengers_per_day",
-    [
+    ("passengers_per_year", "days_per_year", "expected_passengers_per_day"),
+    (
         (365_000_000.0, 365.0, 1_000_000.0),
         (2 * 366_000_000.0, 366.0, 2_000_000.0),
-    ],
+    ),
 )
 def test_passengers_per_day(
     passengers_per_year: float,
@@ -23,11 +23,11 @@ def test_passengers_per_day(
 
 
 @pytest.mark.parametrize(
-    "passengers_per_year, seats_per_aircraft,flights_per_aircraft_per_day",
-    [
+    ("passengers_per_year", "seats_per_aircraft", "flights_per_aircraft_per_day"),
+    (
         (5_000_000_000.0, 250.0, 3.0),
         (4_000_000_000.0, 200.0, 3.0),
-    ],
+    ),
 )
 def test_required_global_fleet(
     passengers_per_year: float,
