@@ -296,3 +296,44 @@ Now we have added the functions in the fleet module to the package namespace. Th
    from aviation.fleet import passengers_per_day
    passengers_per_day()
    ```
+
+### Decorators
+
+Decorators are essentially equivalent to creating a higher order function
+
+```python
+@transform
+def function
+```
+
+is like
+
+```python
+function = transform(function)
+```
+
+To get the strings of the inputs we need to use the inspect module
+
+```python
+tuple(inspect.signature(function).parameters.keys())
+```
+
+- **`abc`** stands for _Abstract Base Classes_ and is imported from `collections.abc`.
+- A **`class`** defines a new type in Python.
+- By convention, type names (classes) use **CapitalizedNames**.
+- `Transform[R, **P]` is an example of adding type variables (generics) to a class.
+
+### Notes on Type Variables and File Organization
+
+- For **Callables** (i.e., function types), the convention is to specify the input types first, followed by the output type.
+- For other constructs (like our new `Transform` class), the output type comes first, then the parameters.
+
+#### Type Variable Explanations
+
+- `R` is a simple type variable representing the return type.
+- `**P` is a special type variable that captures both positional (`args`) and keyword (`kwargs`) arguments.
+
+#### File Naming and Imports
+
+- The file is named `_model.py` (in `src/aviation/`) to remind us that it's only needed for type definitions and not required when using the actual `camia-engine`.
+- There is no need to add `collections`, `inspect`, or `typing` to your dependencies, as they are all included in the standard Python distribution.
