@@ -79,3 +79,9 @@ see value and limit it?
 
 pytest doesn't find test files if named e.g. `fleet_test.py`
 must be names
+
+If you add a trailing comma to a list then it adds up a new line for each import and looks better
+(esp in commits)
+when get a failed test can double click on the failed te
+
+pytest.approx allows absolute (number) or relative tolerance (10% of value)
