@@ -7,7 +7,12 @@ requires-python = ">=3.12"
 dependencies = []
 
 [dependency-groups]
-dev = ["pre-commit>=4.2.0", "pytest>=8.4.1", "ruff>=0.12.3"]
+dev = [
+    "mypy>=1.17.0",
+    "pre-commit>=4.2.0",
+ "pytest>=8.4.1",
+ "ruff>=0.12.3",
+]
 docs = [
     "mkdocs-bibtex>=4.4.0",
     "mkdocs-material>=9.6.15",
@@ -15,30 +20,44 @@ docs = [
     "mkdocstrings[python]>=0.29.1",
 ]
 
+[tool.mypy]
+mypy_path = "src"
+strict = true
+
 [tool.ruff]
 line-length = 100
 
 [tool.ruff.lint]
-select = [
-    "B",    # flake8-bugbear
-    "D",    # docstrings
-    "E",    # pycodestyle
-    "F",    # Pyflakes
-    "I",    # isort
-    "N",    # pycodestyle
-    "SIM",  # flake8-simplify
-    "T",    # pycodestyle
-    "UP",   # pyupgrade
-    "W291", # no trailing whitespace
+select = ["ALL"]
+ignore = [
+    "ANN1",
+    "COM812",
+    "COM819",
+    "D206",
+    "D300",
+    "E111",
+    "E114",
+    "E117",
+    "E501",
+    "ISC001",
+    "ISC002",
+    "Q000",
+    "Q001",
+    "Q002",
+    "W191",
 ]
-ignore = ["E501"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false #doesnt require @pytest.fixture() can just do .fixture
+mark-parentheses = false
+parametrize-values-type = "tuple"
+
 [tool.ruff.lint.per-file-ignores]
-"analysis/*.py" = ["T201"] # Ignore `T201` (print statements) in all `analysis/*.py` files.
-"tests/*.py" = ["D1"] # Ignore `D1` (docstrings) in all `tests/*.py` files.
+"analysis/*.py" = ["T201", "INP001"]
+"tests/*.py" = ["D1", "S101", "INP001"]
 
 [tool.uv]
 default-groups = ["dev", "docs"]

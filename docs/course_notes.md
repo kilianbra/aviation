@@ -8,56 +8,54 @@
 - Use of virtual environments (`venv`) is worth it!
 - `source` is the bash utility that allows us to run files
 
-## Git Commands
+## Git Commands and Environment
 
-- Don't want to have git environment to be on the same
-- Create new branch: `git switch -c BRANCH-NAME-HERE-REPLACE`
-- Create empty file: `touch FILENAME` creates a file with that name
-
-## MkDocs
-
-- View all options: `mkdocs --help` or `mkdocs serve --help`
-- Stop server: Control+C (Windows and Linux)
-- `mkdocs.yml` is there for us to specify config for mkdocs
-
-## Git PR Workflow
-
-For a new PR push a local branch that doesn't have a PR to this to upstream tracking:
-
-### Git Commands and Environment
+### Basic Git Operations
 
 - Keep Git environments separate for different projects
 - Create new branch: `git switch -c <branch-name>`
 - Create empty file: `touch <filename>`
 - Push new branch upstream: `git push -u origin <branch-name>`
 
-### Package Management
+### Git PR Workflow
 
-#### Legacy Package Management
+For a new PR, push a local branch that doesn't have a PR to upstream tracking.
+
+**Additional Git Tips:**
+
+- Use `git add -p <filename>` to select changes interactively
+
+## MkDocs
+
+### Basic Commands
+
+- View all options: `uv run mkdocs --help` or `uv run mkdocs serve --help`
+- Stop server: `Ctrl+C` (Windows and Linux) (`Ctrl+Z` hides it and then use `fg` to bring it back to foreground)
+- Configuration file: `mkdocs.yml` specifies MkDocs settings
+
+## Package Management
+
+### Legacy Package Management
 
 - `requirements.txt` was traditionally used to specify dependencies
 - Installed via `pip install -r requirements.txt`
-- Now replaced by modern tools like `uv`
+- Now replaced by modern tools like `uv lock` and `uv sync`
 
-#### Semantic Versioning (e.g. 1.6.1)
+### Semantic Versioning (e.g., 1.6.1) of modules and software
 
 - **Patch number** (last digit): Bug fixes and security updates that shouldn't break code
 - **Minor version** (middle digit): New features and functionality
 - **Major version** (first digit): Breaking changes
 
-#### Version Specifiers
+### Version Specifiers
 
 - Exact version: `mkdocs==1.6.1`
 - Version range: `mkdocs>=1.6.1,<2` (pip selects newest compatible version)
 - Dependencies between packages can cause version conflicts
 
-### MkDocs Usage
+## Testing with Pytest
 
-- View all options: `mkdocs --help` or `mkdocs serve --help`
-- Stop server: `Ctrl+C` (Windows and Linux)
-- Configuration file: `mkdocs.yml` specifies MkDocs settings
-
-### Pytest usage
+### Basic Usage
 
 Run tests with pytest:
 
@@ -75,7 +73,7 @@ Run tests with pytest:
   ```
 - `@pytest.mark.parametrize` allows multiple test cases
 
-#### Test Values
+### Test Values and Best Practices
 
 - Can use specific pre-calculated values
 - Or run function once to determine expected values
@@ -101,60 +99,200 @@ Run tests with pytest:
 
 - `pytest.approx` supports two types of tolerances:
   - Absolute tolerance (fixed number)
-  - Relative tolerance (percentage of value, e.g. 10%)
+  - Relative tolerance (percentage of value, e.g., 10%)
 
-### Issues with cursor to add the right dependencies
+## Development Environment Issues
 
+### Cursor Dependency Issues
+
+There are issues with Cursor when adding the right dependencies:
+
+```bash
 kpb30@WL-2023-CDT01:/mnt/c/Users/kpb30/Documents_github/aviation$ uv run which python
 /mnt/c/Users/kpb30/Documents_github/aviation/.venv/bin/python
+```
 
-need to add it to uv
-https://github.com/astral-sh/uv/issues/8558
+- Need to add it to `uv`
+- Reference: https://github.com/astral-sh/uv/issues/8558
+- Ask Brockie why `uv run python` doesn't work for running it in WSL
 
-ask Brockie why uv run python doesn't work for running it in wsl
+## Documentation with Docstrings
 
-### Writing actual documentation in the code with docstrings
+### Overview
 
-Command man (manual?) or help can be used
+- Use `man` (manual) or `help` commands for documentation
+- `mkdocstrings` automatically creates documentation on MkDocs from docstrings
 
-mkdocstrings automatically creates a documentation on the mkdocs from the docstrings
-need to add a `docs/api/` folder with two files `fleet.md` which just containts :::aviation.fleet
-And that then creates the documentation for any functions with a docstrings
+### Setting Up API Documentation
 
-In the bigger `index.md` it will take all of the functions declared in aviation's **init** 's **all** (presumably)
+1. Create a `docs/api/` folder
+2. Add files like `fleet.md` which contains: `:::aviation.fleet`
+3. This creates documentation for any functions with docstrings
 
-Index is web stuff is the name for the default, that is a special name for the **init**.py
-Can give a module docstring
+### Module Documentation Structure
 
-Annoyingly ruff only does python code formatting, no good VS code for docstring aligns
+- In the main `index.md`, it takes all functions declared in aviation's `__init__.py`'s `__all__`
+- `index.md` is the default name for web content (special name for `__init__.py`)
+- Can provide module docstrings
 
-Ruff 'D' rules are documentation rules
+### Documentation Formatting and Rules
 
-Tests are for developers, not for on documentaition
-so can ignore docstring rules on tests
+- **Note**: Ruff only does Python code formatting, no good VS Code extension for docstring alignment
+- Ruff 'D' rules are documentation rules
+- Tests are for developers, not for documentation, so can ignore docstring rules on tests
 
-In the D rules there are two big schools of docstrings: the numpy vs google style
-In AIA we use [Google style docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
+### Docstring Styles
 
-Can even run examples in docstring and have example codes on how to use it and get pytest to run em
+In the D rules, there are two main schools of docstrings:
 
-git add -p then can select changes
+- **Numpy style**
+- **Google style** (used in AIA)
 
-mkdocs-prebuild is an AIA specific documentation dependency so that we don't need to add nav from docsite or other. It's not public, so need to explain to uv how to get access to it.
+Reference: [Google Style Docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
 
-Gitlab tokens
+### Advanced Documentation Features
 
+- Can include examples in docstrings with example code showing usage
+- Can get pytest to run examples in docstrings
+
+## Advanced Dependencies and Authentication
+
+### MkDocs Prebuild
+
+- `mkdocs-prebuild` is an AIA-specific documentation dependency
+- Eliminates need to manually add navigation from docsite
+- Not public, so need to configure `uv` for access
+
+### GitLab Authentication
+
+#### Environment Setup
+
+Check current environment variables:
+
+```bash
 env | grep UV
+```
 
-For now I might need to run this every time I open a new terminal
+For now, might need to run this every time opening a new terminal:
 
+```bash
 source ~/.env
+```
 
+Add the dependency:
+
+```bash
 uv add --group=docs mkdocs-prebuild
+```
 
-### Gitlab logins for secret and variables
+#### GitLab Tokens and Variables
 
-can use vars.UV_INDEX_GITLAB_USERNAME is not secret and stored in plain text
-and secrets.UV_INDEX_GITLAB_PASSWORD is stored in encrypted form
+- **Variables** (`vars.UV_INDEX_GITLAB_USERNAME`): Not secret, stored in plain text
+- **Secrets** (`secrets.UV_INDEX_GITLAB_PASSWORD`): Stored in encrypted form
 
-To do over lunch: move folders to Linux and figure out how to avoid needing to run source ~/.env
+### To-Do Items
+
+**Lunch break task**: Move folders to Linux and figure out how to avoid needing to run `source ~/.env`
+
+## Runtime Checks and Type Safety
+
+### Runtime Type Checking
+
+Example scenario: What if someone tries to use functions with wrong input types?
+
+### Test-Driven Development
+
+Write tests first, then make changes to codebase to pass tests:
+
+```python
+with pytest.raises(TypeError, match="Argument `passengers_per_year` passed to `passengers_per_day` function must be an instance of <class 'float'>"):
+    passengers_per_day("365_000_000.0", 365.0)
+```
+
+### Multiline Strings and F-Strings
+
+- Can create multiline strings using parentheses
+- F-strings are available for string formatting
+- `isinstance` checks can get very long and verbose for testing
+- Some libraries simplify this, but code checks at runtime anyway
+
+### Static Type Checking
+
+- Can perform ahead-of-time type checking using static analysis
+- Similar to linting, but focuses on code correctness
+- Use `mypy` as a static type checker for Python
+- **PEP 484** allows function type specification:
+
+```python
+def greeting(name: str) -> str:
+    return 'Hello' + name
+```
+
+### Development Tips and Tools
+
+#### VS Code Tips
+
+- Use `Ctrl+D` to highlight and replace all instances of selected text
+
+#### Static Type Checking
+
+- Run `uv run mypy .` to check all files for type issues
+- Configure CI pipeline (`check.yml`) to run fastest checks first for quick feedback
+
+#### Ruff Configuration Changes
+
+Change all the ruff rules from the old one
+
+select = [
+"B", # flake8-bugbear
+"D", # docstrings
+"E", # pycodestyle
+"F", # Pyflakes
+"I", # isort
+"N", # pycodestyle
+"SIM", # flake8-simplify
+"T", # pycodestyle
+"UP", # pyupgrade
+"W291", # no trailing whitespace
+]
+ignore = ["E501"]
+
+to now all and a lot of ignores
+
+`S101` causes issues when any assert is used, because it can be bypassed (not robust).
+We want to ignore this rule for our tests directory
+
+`INP001` is that some functions are imported without an **init** (analysis directory looks like a package)
+We want to ignore this rule for our analysis directory
+
+Ignore `T201` (print statements) in all `analysis/*.py` files.
+Ignore `D1` (docstrings) in all `tests/*.py` files.
+
+PT007 is using tuples or lists
+
+### Imports of modules
+
+This represents the package name and the module.
+
+Now we have added the functions in the fleet module to the package namespace. This means we can now import the functions directly from the package namespace with the import in `__init__.py`. Here are the different ways to import and use functions:
+
+1. ```python
+   import aviation
+   aviation.fleet.passengers_per_day()
+   aviation.passengers_per_day()
+   ```
+
+2. ```python
+   from aviation import fleet
+   fleet.passengers_per_day()
+   ```
+
+3. ```python
+   from aviation import passengers_per_day
+   passengers_per_day()
+   ```
+
+4. ```python
+   from aviation.fleet import passengers_per_day
+   passengers_per_day()
+   ```
