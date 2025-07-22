@@ -65,23 +65,96 @@ Run tests with pytest:
 - Run tests in specific file: `uv run pytest folder/specific_test.py`
 - Run specific test: `uv run pytest folder/specific_test.py::test_name`
 
-Import to parametrise to not have hard coded results
-import pytest
-can parametrise by using decorators by adding @pytest before the function
-@pytest.mark.parametrize
-example usage for testing
-passengers_per_day(passengers_per_year,days_per_year)
+### Pytest Parametrization
 
-@pytest.mark.parametrize
+- Use `import pytest` to enable parametrization
+- Add `@pytest.mark.parametrize` decorator before test functions
+- Example usage for testing function:
+  ```python
+  passengers_per_day(passengers_per_year, days_per_year)
+  ```
+- `@pytest.mark.parametrize` allows multiple test cases
 
-Always have to do specific values that we know exactly in advance? should we run it once to
-see value and limit it?
+#### Test Values
 
-pytest doesn't find test files if named e.g. `fleet_test.py`
-must be names
+- Can use specific pre-calculated values
+- Or run function once to determine expected values
 
-If you add a trailing comma to a list then it adds up a new line for each import and looks better
-(esp in commits)
-when get a failed test can double click on the failed te
+#### Test File Naming
 
-pytest.approx allows absolute (number) or relative tolerance (10% of value)
+- Pytest won't find files named like `fleet_test.py`
+- Must follow pytest naming conventions
+
+#### Style Tips
+
+- Adding trailing commas in lists enables cleaner diffs:
+  ```python
+  my_list = [
+      'item1',
+      'item2',
+      'item3',  # Note trailing comma
+  ]
+  ```
+- Double click failed tests in output to jump to location
+
+#### Approximate Comparisons
+
+- `pytest.approx` supports two types of tolerances:
+  - Absolute tolerance (fixed number)
+  - Relative tolerance (percentage of value, e.g. 10%)
+
+### Issues with cursor to add the right dependencies
+
+kpb30@WL-2023-CDT01:/mnt/c/Users/kpb30/Documents_github/aviation$ uv run which python
+/mnt/c/Users/kpb30/Documents_github/aviation/.venv/bin/python
+
+need to add it to uv
+https://github.com/astral-sh/uv/issues/8558
+
+ask Brockie why uv run python doesn't work for running it in wsl
+
+### Writing actual documentation in the code with docstrings
+
+Command man (manual?) or help can be used
+
+mkdocstrings automatically creates a documentation on the mkdocs from the docstrings
+need to add a `docs/api/` folder with two files `fleet.md` which just containts :::aviation.fleet
+And that then creates the documentation for any functions with a docstrings
+
+In the bigger `index.md` it will take all of the functions declared in aviation's **init** 's **all** (presumably)
+
+Index is web stuff is the name for the default, that is a special name for the **init**.py
+Can give a module docstring
+
+Annoyingly ruff only does python code formatting, no good VS code for docstring aligns
+
+Ruff 'D' rules are documentation rules
+
+Tests are for developers, not for on documentaition
+so can ignore docstring rules on tests
+
+In the D rules there are two big schools of docstrings: the numpy vs google style
+In AIA we use [Google style docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
+
+Can even run examples in docstring and have example codes on how to use it and get pytest to run em
+
+git add -p then can select changes
+
+mkdocs-prebuild is an AIA specific documentation dependency so that we don't need to add nav from docsite or other. It's not public, so need to explain to uv how to get access to it.
+
+Gitlab tokens
+
+env | grep UV
+
+For now I might need to run this every time I open a new terminal
+
+source ~/.env
+
+uv add --group=docs mkdocs-prebuild
+
+### Gitlab logins for secret and variables
+
+can use vars.UV_INDEX_GITLAB_USERNAME is not secret and stored in plain text
+and secrets.UV_INDEX_GITLAB_PASSWORD is stored in encrypted form
+
+To do over lunch: move folders to Linux and figure out how to avoid needing to run source ~/.env

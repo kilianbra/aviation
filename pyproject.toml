@@ -8,7 +8,12 @@ dependencies = []
 
 [dependency-groups]
 dev = ["pre-commit>=4.2.0", "pytest>=8.4.1", "ruff>=0.12.3"]
-docs = ["mkdocs-bibtex>=4.4.0", "mkdocs-material>=9.6.15"]
+docs = [
+    "mkdocs-bibtex>=4.4.0",
+    "mkdocs-material>=9.6.15",
+    "mkdocs-prebuild>=0.5.0",
+    "mkdocstrings[python]>=0.29.1",
+]
 
 [tool.ruff]
 line-length = 100
@@ -16,6 +21,7 @@ line-length = 100
 [tool.ruff.lint]
 select = [
     "B",    # flake8-bugbear
+    "D",    # docstrings
     "E",    # pycodestyle
     "F",    # Pyflakes
     "I",    # isort
@@ -27,12 +33,20 @@ select = [
 ]
 ignore = ["E501"]
 
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
 [tool.ruff.lint.per-file-ignores]
-# Ignore `T201` (print statements) in all `analysis/*.py` files.
-"analysis/*.py" = ["T201"]
+"analysis/*.py" = ["T201"] # Ignore `T201` (print statements) in all `analysis/*.py` files.
+"tests/*.py" = ["D1"] # Ignore `D1` (docstrings) in all `tests/*.py` files.
 
 [tool.uv]
 default-groups = ["dev", "docs"]
+
+[[tool.uv.index]] # Add the AIA private index to uv from uni of cambridge
+name = "gitlab"
+url = "https://gitlab.developers.cam.ac.uk/api/v4/projects/8115/packages/pypi/simple"
+
 
 [build-system]
 requires = ["uv_build>=0.8.0,<0.9.0"]

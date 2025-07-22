@@ -1,3 +1,5 @@
+"""This module contains functions for calculating the passengers per day."""
+
 from aviation import fleet
 
 days_per_year = 366.0

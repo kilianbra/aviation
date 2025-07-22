@@ -1,3 +1,5 @@
+"""This module contains functions for calculating the required global fleet."""
+
 import aviation
 from aviation import required_global_fleet
 

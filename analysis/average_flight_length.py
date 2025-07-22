@@ -1,3 +1,5 @@
+"""This module contains functions for calculating the average flight length."""
+
 import aviation
 
 global_rpk_per_year = 9.0e12
