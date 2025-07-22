@@ -22,6 +22,7 @@
 For a new PR, push a local branch that doesn't have a PR to upstream tracking.
 
 **Additional Git Tips:**
+
 - Use `git add -p <filename>` to select changes interactively
 
 ## MkDocs
@@ -143,6 +144,7 @@ kpb30@WL-2023-CDT01:/mnt/c/Users/kpb30/Documents_github/aviation$ uv run which p
 ### Docstring Styles
 
 In the D rules, there are two main schools of docstrings:
+
 - **Numpy style**
 - **Google style** (used in AIA)
 
@@ -166,16 +168,19 @@ Reference: [Google Style Docstring](https://sphinxcontrib-napoleon.readthedocs.i
 #### Environment Setup
 
 Check current environment variables:
+
 ```bash
 env | grep UV
 ```
 
 For now, might need to run this every time opening a new terminal:
+
 ```bash
 source ~/.env
 ```
 
 Add the dependency:
+
 ```bash
 uv add --group=docs mkdocs-prebuild
 ```
@@ -223,43 +228,47 @@ def greeting(name: str) -> str:
     return 'Hello' + name
 ```
 
+### Development Tips and Tools
 
-Highlight something and `Ctrl+D` to replace all of the instances
+#### VS Code Tips
 
-Command `uv run mypy .` checks all the files
+- Use `Ctrl+D` to highlight and replace all instances of selected text
 
-Orders the check.yml file by runtime speed, fastest first and slowest at the end to get fast feedback
+#### Static Type Checking
 
+- Run `uv run mypy .` to check all files for type issues
+- Configure CI pipeline (`check.yml`) to run fastest checks first for quick feedback
+
+#### Ruff Configuration Changes
 
 Change all the ruff rules from the old one
 
 select = [
-    "B",    # flake8-bugbear
-    "D",    # docstrings
-    "E",    # pycodestyle
-    "F",    # Pyflakes
-    "I",    # isort
-    "N",    # pycodestyle
-    "SIM",  # flake8-simplify
-    "T",    # pycodestyle
-    "UP",   # pyupgrade
-    "W291", # no trailing whitespace
+"B", # flake8-bugbear
+"D", # docstrings
+"E", # pycodestyle
+"F", # Pyflakes
+"I", # isort
+"N", # pycodestyle
+"SIM", # flake8-simplify
+"T", # pycodestyle
+"UP", # pyupgrade
+"W291", # no trailing whitespace
 ]
 ignore = ["E501"]
 
 to now all and a lot of ignores
 
-S101 causes issues when any assert is used, because it can be bypassed (not robust).
+`S101` causes issues when any assert is used, because it can be bypassed (not robust).
 We want to ignore this rule for our tests directory
 
-INP001 is that some functions are imported without an __init__ (analysis directory looks like a package)
+`INP001` is that some functions are imported without an **init** (analysis directory looks like a package)
 We want to ignore this rule for our analysis directory
 
- # Ignore `T201` (print statements) in all `analysis/*.py` files.
- # Ignore `D1` (docstrings) in all `tests/*.py` files.
+Ignore `T201` (print statements) in all `analysis/*.py` files.
+Ignore `D1` (docstrings) in all `tests/*.py` files.
 
- PT007 is using tuples or lists
-
+PT007 is using tuples or lists
 
 ### Imports of modules
 
