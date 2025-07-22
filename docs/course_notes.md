@@ -102,3 +102,40 @@ Run tests with pytest:
 - `pytest.approx` supports two types of tolerances:
   - Absolute tolerance (fixed number)
   - Relative tolerance (percentage of value, e.g. 10%)
+
+### Issues with cursor to add the right dependencies
+
+kpb30@WL-2023-CDT01:/mnt/c/Users/kpb30/Documents_github/aviation$ uv run which python
+/mnt/c/Users/kpb30/Documents_github/aviation/.venv/bin/python
+
+need to add it to uv
+https://github.com/astral-sh/uv/issues/8558
+
+ask Brockie why uv run python doesn't work for running it in wsl
+
+### Writing actual documentation in the code with docstrings
+
+Command man (manual?) or help can be used
+
+mkdocstrings automatically creates a documentation on the mkdocs from the docstrings
+need to add a `docs/api/` folder with two files `fleet.md` which just containts :::aviation.fleet
+And that then creates the documentation for any functions with a docstrings
+
+In the bigger `index.md` it will take all of the functions declared in aviation's **init** 's **all** (presumably)
+
+Index is web stuff is the name for the default, that is a special name for the **init**.py
+Can give a module docstring
+
+Annoyingly ruff only does python code formatting, no good VS code for docstring aligns
+
+Ruff 'D' rules are documentation rules
+
+Tests are for developers, not for on documentaition
+so can ignore docstring rules on tests
+
+In the D rules there are two big schools of docstrings: the numpy vs google style
+In AIA we use [Google style docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
+
+Can even run examples in docstring and have example codes on how to use it and get pytest to run em
+
+git add -p then can select changes

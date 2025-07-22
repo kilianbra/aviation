@@ -1,4 +1,6 @@
 site_name: Aviation Model
+theme:
+  name: "material"
 
 nav:
   - Home: "index.md"
