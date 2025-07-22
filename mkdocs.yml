@@ -4,8 +4,12 @@ nav:
   - Home: "index.md"
   - Aviation model: "aviation.md"
   - Course notes: "course_notes.md"
+  - API Documentation:
+      - Aviation: "api/index.md"
+      - Fleet: "api/fleet.md"
 
 plugins:
+  - mkdocstrings
   - search
   - bibtex:
       bib_file: "https://api.zotero.org/users/6401108/collections/DXT8EFTF/items?format=bibtex"
