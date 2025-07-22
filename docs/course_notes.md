@@ -139,3 +139,15 @@ In AIA we use [Google style docstring](https://sphinxcontrib-napoleon.readthedoc
 Can even run examples in docstring and have example codes on how to use it and get pytest to run em
 
 git add -p then can select changes
+
+mkdocs-prebuild is an AIA specific documentation dependency so that we don't need to add nav from docsite or other. It's not public, so need to explain to uv how to get access to it.
+
+Gitlab tokens
+
+env | grep UV
+
+For now I might need to run this every time I open a new terminal
+
+source ~/.env
+
+uv add --group=docs mkdocs-prebuild
