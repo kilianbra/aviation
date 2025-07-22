@@ -156,3 +156,5 @@ uv add --group=docs mkdocs-prebuild
 
 can use vars.UV_INDEX_GITLAB_USERNAME is not secret and stored in plain text
 and secrets.UV_INDEX_GITLAB_PASSWORD is stored in encrypted form
+
+To do over lunch: move folders to Linux and figure out how to avoid needing to run source ~/.env
