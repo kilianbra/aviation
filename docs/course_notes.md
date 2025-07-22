@@ -151,3 +151,8 @@ For now I might need to run this every time I open a new terminal
 source ~/.env
 
 uv add --group=docs mkdocs-prebuild
+
+### Gitlab logins for secret and variables
+
+can use vars.UV_INDEX_GITLAB_USERNAME is not secret and stored in plain text
+and secrets.UV_INDEX_GITLAB_PASSWORD is stored in encrypted form
