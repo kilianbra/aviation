@@ -65,23 +65,40 @@ Run tests with pytest:
 - Run tests in specific file: `uv run pytest folder/specific_test.py`
 - Run specific test: `uv run pytest folder/specific_test.py::test_name`
 
-Import to parametrise to not have hard coded results
-import pytest
-can parametrise by using decorators by adding @pytest before the function
-@pytest.mark.parametrize
-example usage for testing
-passengers_per_day(passengers_per_year,days_per_year)
+### Pytest Parametrization
 
-@pytest.mark.parametrize
+- Use `import pytest` to enable parametrization
+- Add `@pytest.mark.parametrize` decorator before test functions
+- Example usage for testing function:
+  ```python
+  passengers_per_day(passengers_per_year, days_per_year)
+  ```
+- `@pytest.mark.parametrize` allows multiple test cases
 
-Always have to do specific values that we know exactly in advance? should we run it once to
-see value and limit it?
+#### Test Values
 
-pytest doesn't find test files if named e.g. `fleet_test.py`
-must be names
+- Can use specific pre-calculated values
+- Or run function once to determine expected values
 
-If you add a trailing comma to a list then it adds up a new line for each import and looks better
-(esp in commits)
-when get a failed test can double click on the failed te
+#### Test File Naming
 
-pytest.approx allows absolute (number) or relative tolerance (10% of value)
+- Pytest won't find files named like `fleet_test.py`
+- Must follow pytest naming conventions
+
+#### Style Tips
+
+- Adding trailing commas in lists enables cleaner diffs:
+  ```python
+  my_list = [
+      'item1',
+      'item2',
+      'item3',  # Note trailing comma
+  ]
+  ```
+- Double click failed tests in output to jump to location
+
+#### Approximate Comparisons
+
+- `pytest.approx` supports two types of tolerances:
+  - Absolute tolerance (fixed number)
+  - Relative tolerance (percentage of value, e.g. 10%)

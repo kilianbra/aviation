@@ -3,6 +3,7 @@ site_name: Aviation Model
 nav:
   - Home: "index.md"
   - Aviation model: "aviation.md"
+  - Course notes: "course_notes.md"
 
 plugins:
   - search
