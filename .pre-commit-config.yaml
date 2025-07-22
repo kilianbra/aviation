@@ -12,6 +12,8 @@ repos:
         args: ["--fix=lf"]
       - id: end-of-file-fixer
       - id: trailing-whitespace
+      - id: name-tests-test
+        args: [--pytest-test-first]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.3
     hooks:
@@ -19,6 +21,15 @@ repos:
         args: [--fix]
       - id: ruff-format
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.7.21
+    rev: 0.8.0
     hooks:
       - id: uv-lock
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: pytest-check
+        types: [python]
+        entry: uv run pytest
+        language: system
+        pass_filenames: false
+        always_run: true

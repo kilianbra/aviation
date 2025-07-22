@@ -7,7 +7,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [dependency-groups]
-dev = ["pre-commit>=4.2.0", "ruff>=0.12.3"]
+dev = ["pre-commit>=4.2.0", "pytest>=8.4.1", "ruff>=0.12.3"]
 docs = ["mkdocs-bibtex>=4.4.0", "mkdocs-material>=9.6.15"]
 
 [tool.ruff]
@@ -15,14 +15,15 @@ line-length = 100
 
 [tool.ruff.lint]
 select = [
-    "B",   # flake8-bugbear
-    "E",   # pycodestyle
-    "F",   # Pyflakes
-    "I",   # isort
-    "N",   # pycodestyle
-    "SIM", # flake8-simplify
-    "T",   # pycodestyle
-    "UP",  # pyupgrade
+    "B",    # flake8-bugbear
+    "E",    # pycodestyle
+    "F",    # Pyflakes
+    "I",    # isort
+    "N",    # pycodestyle
+    "SIM",  # flake8-simplify
+    "T",    # pycodestyle
+    "UP",   # pyupgrade
+    "W291", # no trailing whitespace
 ]
 ignore = ["E501"]
 
@@ -34,5 +35,5 @@ ignore = ["E501"]
 default-groups = ["dev", "docs"]
 
 [build-system]
-requires = ["uv_build>=0.7.21,<0.8.0"]
+requires = ["uv_build>=0.8.0,<0.9.0"]
 build-backend = "uv_build"
