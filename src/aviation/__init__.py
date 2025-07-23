@@ -13,6 +13,7 @@ __all__ = [
     "average_flight_length",
     "passengers_per_day",
     "required_global_fleet",
+    "transforms",
 ]  # Makes them imported when import * but also important for general code working
 
 
@@ -21,3 +22,5 @@ from aviation.fleet import (
     passengers_per_day,
     required_global_fleet,
 )  # the first aviation is the folder (package)name, the second is the file (module) name
+
+transforms = (passengers_per_day, required_global_fleet, average_flight_length)
