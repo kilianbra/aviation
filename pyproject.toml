@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Sample aviation project to learn about uv, git, and aia code database"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "camia-engine>=0.4.4",
+    "camia-model>=0.6.4",
+]
 
 [dependency-groups]
 dev = [
