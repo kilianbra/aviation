@@ -337,3 +337,39 @@ tuple(inspect.signature(function).parameters.keys())
 
 - The file is named `_model.py` (in `src/aviation/`) to remind us that it's only needed for type definitions and not required when using the actual `camia-engine`.
 - There is no need to add `collections`, `inspect`, or `typing` to your dependencies, as they are all included in the standard Python distribution.
+
+### Transforms and names
+
+the name passengers_per_day can be the name in inputs, or the value inputed, or the transform that is calculating it from other values
+
+New class: SystemsModel(args) which takes all the transofmrs of a module (aviation.transofmrs)
+
+Goal is to be able to run
+
+```python
+systems_model = SystemsModel(aviation.transforms)
+required_global_fleet = systems_model.evaluate(inputs,outputs)
+```
+
+passengers_per_day interim transform is now totally abstracted and not mentioned
+
+tuple[Transform, ...] means that your input could be any number of transform types
+tuple is the most efficient data structure (memory wise), esp if you won't be changing anything about it
+
+Sequence are homogeneous datastructure: lists, tuples/dict (can also be heterogeneous eg mixing strings and floats),
+
+Do the type-ing first and raise not implemented error
+
+First test cases when outputs are known
+
+pytest fixture: is something that is needed multiple times rather than needing to instatiate 5 times
+
+How to keep doing multiple commits: add in tests one by one if not too artificial
+
+Python for loops can have an else branch (if we never get break)
+
+```python
+code #noqa: ANN401
+```
+
+means that that rule won't be checked on that line, bad practice, but necessary for the transform as there is no predefined type

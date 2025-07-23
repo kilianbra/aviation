@@ -10,8 +10,8 @@ dependencies = []
 dev = [
     "mypy>=1.17.0",
     "pre-commit>=4.2.0",
- "pytest>=8.4.1",
- "ruff>=0.12.3",
+    "pytest>=8.4.1",
+    "ruff>=0.12.3",
 ]
 docs = [
     "mkdocs-bibtex>=4.4.0",
@@ -30,22 +30,10 @@ line-length = 100
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-    "ANN1",
-    "COM812",
-    "COM819",
-    "D206",
-    "D300",
-    "E111",
-    "E114",
-    "E117",
-    "E501",
-    "ISC001",
-    "ISC002",
-    "Q000",
-    "Q001",
-    "Q002",
-    "W191",
+    "ANN1","COM812","COM819","D206","D300","E111","E114","E117","E501","ISC001","ISC002",
+    "Q000","Q001","Q002","W191"
 ]
+
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
