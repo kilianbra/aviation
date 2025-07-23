@@ -1,16 +1,17 @@
 """This module contains functions for calculating the required global fleet."""
 
+import camia_engine as engine
+
 import aviation
-from aviation import _engine as engine
 
 passengers_per_year = 5.0e9
-flights_per_aircraft_per_day = 3.0
+aircraft_flights_per_day = 3.0
 seats_per_aircraft = 250.0
 days_per_year = 366.0
 
 inputs = {
     "passengers_per_year": passengers_per_year,
-    "flights_per_aircraft_per_day": flights_per_aircraft_per_day,
+    "aircraft_flights_per_day": aircraft_flights_per_day,
     "seats_per_aircraft": seats_per_aircraft,
     "days_per_year": days_per_year,
 }

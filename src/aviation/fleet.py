@@ -6,10 +6,10 @@ The functions are:
     average_flight_length: Calculate the average flight length.
 """
 
-from aviation._model import transform
+import camia_model as model
 
 
-@transform
+@model.transform
 def passengers_per_day(passengers_per_year: float, days_per_year: float) -> float:
     """Calculate the global number of aviation passengers per day.
 
@@ -26,7 +26,7 @@ def passengers_per_day(passengers_per_year: float, days_per_year: float) -> floa
     return passengers_per_year / days_per_year
 
 
-@transform
+@model.transform
 def required_global_fleet(
     passengers_per_day: float, seats_per_aircraft: float, aircraft_flights_per_day: float
 ) -> float:
@@ -43,7 +43,7 @@ def required_global_fleet(
     return passengers_per_day / (seats_per_aircraft * aircraft_flights_per_day)
 
 
-@transform
+@model.transform
 def average_flight_length(global_rpk_per_year: float, passengers_per_year: float) -> float:
     """Calculate the average flight length.
 
