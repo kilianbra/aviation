@@ -373,3 +373,14 @@ code #noqa: ANN401
 ```
 
 means that that rule won't be checked on that line, bad practice, but necessary for the transform as there is no predefined type
+
+mkdocs-prebuild
+camia-model
+camia-engine
+are all from the aia gitlab and need token authentification
+
+Actually only need the engine in the analysis, not the actual package
+
+package names (camia_engine in src/dirname)
+are different from package identifiers (camia-engine, in pyrpoject.toml).
+The folder name doesn't matter at all but sometimes useful to havee
