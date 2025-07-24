@@ -487,3 +487,51 @@ f.__add__(1) # quicker computational time to do f+1
 It also adds some new tests on any transform we've defined to check units of our transforms.
 On runtime we will just operate on floats, only for testing/dvp you care about units
 `camia_engine` is a package fully developed by cmamia
+
+### Switching / Enums
+
+If we have to different models for future demand
+e.g. linear vs exponential growth
+
+need enum
+
+@enum.unique
+makes sure all of the ones are unique
+enum.auto() just gives values but we don't care what it is as we will just use the names
+
+for classes -> convention is using title class like
+DemandGrowthModel
+
+enum convention is have all capitals with potential underscore
+EXPONENTIAL
+S_CURVE
+etc.
+
+Unfortunately no way to get ruff/linter and mypy to understand that having two functions. So need to add the comment
+
+```python
+# noqa: F811
+# type: ignore[no-redef]
+```
+
+no point in match case inside a functions:
+different inputs and outputs and huge variation
+
+when you run a def function
+with passengers_per_year.context()
+
+### How to produce a lot of results
+
+Transforms are able to do full arrays (fully vectorised)
+
+can change inputs then to
+camia.model
+set input
+"demand_growth_model": model.AssociativeTensor(
+[4.0 * percent/year, 2.5*percent/year],
+dims=("demand_growth_model",),
+coords=(demand_growth_model,),
+)
+
+vector results: dims has the names of dimensions
+coords are numbers
