@@ -62,10 +62,9 @@ def passengers_per_year(
     Returns:
         The number of passengers per year, as a Quantity with units passenger/year.
     """
-    passengers_per_year_in_2025 = PASSENGERS_PER_YEAR_IN_2025
     growth_factor = (100.0 * percent + demand_growth_rate * 1.0 * year).convert_to(DIMENSIONLESS)
 
-    return passengers_per_year_in_2025 * growth_factor ** (modelling_year - 2025)
+    return PASSENGERS_PER_YEAR_IN_2025 * growth_factor ** (modelling_year - 2025)
 
 
 @model.transform.switch(demand_growth_model=DemandGrowthModel.LINEAR)  # type: ignore[no-redef]
@@ -82,13 +81,12 @@ def passengers_per_year(  # noqa: F811
     Returns:
         The number of passengers per year, as a Quantity with units passenger/year.
     """
-    passengers_per_year_in_2025 = PASSENGERS_PER_YEAR_IN_2025
     years_since_2025 = float(modelling_year - 2025) * year
     growth_factor = (100.0 * percent + demand_growth_rate * years_since_2025).convert_to(
         DIMENSIONLESS
     )
 
-    return passengers_per_year_in_2025 * growth_factor
+    return PASSENGERS_PER_YEAR_IN_2025 * growth_factor
 
 
 @model.transform.switch(demand_growth_model=DemandGrowthModel.CONSTANT)  # type: ignore[no-redef]

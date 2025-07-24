@@ -503,7 +503,7 @@ for classes -> convention is using title class like
 DemandGrowthModel
 
 enum convention is have all capitals with potential underscore
-EXPONTENTIAL
+EXPONENTIAL
 S_CURVE
 etc.
 
@@ -519,3 +519,19 @@ different inputs and outputs and huge variation
 
 when you run a def function
 with passengers_per_year.context()
+
+### How to produce a lot of results
+
+Transforms are able to do full arrays (fully vectorised)
+
+can change inputs then to
+camia.model
+set input
+"demand_growth_model": model.AssociativeTensor(
+[4.0 * percent/year, 2.5*percent/year],
+dims=("demand_growth_model",),
+coords=(demand_growth_model,),
+)
+
+vector results: dims has the names of dimensions
+coords are numbers
