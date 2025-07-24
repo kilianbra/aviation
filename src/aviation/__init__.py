@@ -9,18 +9,25 @@ Functions:
     average_flight_length: Calculate the average flight length.
 """
 
-__all__ = [
-    "average_flight_length",
-    "passengers_per_day",
-    "required_global_fleet",
-    "transforms",
-]  # Makes them imported when import * but also important for general code working
+__all__ = ("DemandGrowthModel", "transforms")
 
-
+from aviation.demand import (
+    DemandGrowthModel,
+    demand_growth_model,
+    demand_growth_rate,
+    passengers_per_year,
+)
 from aviation.fleet import (
     average_flight_length,
     passengers_per_day,
     required_global_fleet,
 )  # the first aviation is the folder (package)name, the second is the file (module) name
 
-transforms = (passengers_per_day, required_global_fleet, average_flight_length)
+transforms = (
+    passengers_per_day,
+    required_global_fleet,
+    average_flight_length,
+    passengers_per_year,
+    demand_growth_rate,
+    demand_growth_model,
+)
