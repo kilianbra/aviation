@@ -384,3 +384,106 @@ Actually only need the engine in the analysis, not the actual package
 package names (camia_engine in src/dirname)
 are different from package identifiers (camia-engine, in pyrpoject.toml).
 The folder name doesn't matter at all but sometimes useful to havee
+
+### Helpful Commands
+
+Here are some useful commands for code formatting, linting, type checking, and testing:
+
+- **Format code with Ruff:**
+
+  ```bash
+  uv run ruff format
+  ```
+
+- **Check code with Ruff:**
+
+  ```bash
+  uv run ruff check
+  ```
+
+- **Type check with mypy:**
+
+  ```bash
+  uv run mypy .
+  ```
+
+- **Run tests with pytest:**
+
+  ```bash
+  uv run pytest
+  ```
+
+- **Run all pre-commit hooks:**
+  ```bash
+  uv run pre-commit run --all-files
+  ```
+  or
+  ```bash
+  uv run pre-commit run -a
+  ```
+
+### Units
+
+#### Typing and Units in `camia-model`
+
+- The `units` module is also part of `camia-model`.
+- **Always use the `typing` library** for type annotations.
+
+  - Instead of using plain `float` in function signatures, use:
+
+    ```python
+    import typing
+    from camia_model.units import day, year
+
+    def my_function(x: typing.Annotated[float, day / year]) -> None:
+        ...
+    ```
+
+- To use units like `day` or `year`, import them directly:
+  ```python
+  from camia_model.units import day, year
+  ```
+- **Adding new units:**
+  If you need a unit that isn't provided (e.g., `passenger`), create a new `units.py` and define it there.
+
+#### Internal Style Guide
+
+- Always import the main package as:
+  - `import camia_model as model`
+  - or, for aia-model-distribution: `import aia-model-distribution as distribution`
+- **Exception:** For units, always import them directly from `camia_model.units`.
+
+#### Python Function Arguments
+
+- Use `*args` and `**kwargs` as needed, following standard Python conventions for flexible argument passing.
+
+- Use Python's type annotation syntax for clarity and type checking.
+
+```python
+class F:
+   def __call__(self, *args, **kwargs):
+      print(f"Calling f with {args} and {kwargs})
+
+   def __getitem__(self, item):
+      print(f"Getting item {item} from f")
+
+   def __add__(self,other):
+      print("Adding ...")
+
+   def __radd__(self, other):
+      print("Adding on the right ...")
+
+f = F()
+
+f(0,1,b=5,a=2) # returns "Calling f with (0,1) and {'b':5,'a':2}
+f["Danial"] # returns "Getting item Danial from f"
+f + 1 # returns "Adding ..."
+1 + f # returns "Adding on the right ..."
+f.__add__(1) # quicker computational time to do f+1
+
+```
+
+`pytest_camia` is an extension package so camia comes after
+It also adds some new tests on any transform we've defined to check units of our transforms.
+On runtime we will just operate on floats, only for testing/dvp you care about units
+`camia_engine` is a package fully developed by cmamia
